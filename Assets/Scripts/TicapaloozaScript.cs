@@ -4,28 +4,44 @@ using UnityEngine;
 
 public class TicapaloozaScript : MonoBehaviour
 {
-    public string entradasCampo;
-    public string entradasPlateas;
+    public int entradasCampo;
+    public int entradasPlateas;
 
-    string valorCampo = 1200;
-    string valorPlateas = 2000;
-    string totalEntradasVendidas = entradasCampo + entradasPlateas;
-    string capacidadPredio = 36600;
+    int valorCampo = 1200;
+    int valorPlateas = 2000;
+    int capacidadPredio = 36600;
+    int totalRecaudacion;
 
     // Start is called before the first frame update
     void Start()
     {
+        int totalEntradasVendidas = entradasCampo + entradasPlateas;
+
+        totalRecaudacion = totalRecaudacion + entradasCampo * valorCampo;
+        totalRecaudacion = totalRecaudacion + entradasPlateas * valorPlateas;
+
         if (totalEntradasVendidas == capacidadPredio) {
             Debug.Log("Sold out!");
-            return
         }
-        if (totalEntradasVendidas >= capacidadPredio/2) {
+        if (totalEntradasVendidas >= capacidadPredio / 2) {
             Debug.Log("El festival fue un éxito!");
-            return
         } else {
             Debug.Log("Debemos mejorar la convocatoria");
-            return
         }
+        if (entradasCampo <= 0 && entradasCampo > 20400)
+        {
+            Debug.Log("Error.");
+            return;
+        } else
+        if (entradasPlateas <= 0 && entradasPlateas > 16200)
+        {
+            Debug.Log("Error.");
+            return;
+        }
+
+        Debug.Log("La recaudacion total es de $" + totalRecaudacion);
+
+     
     }
 
     // Update is called once per frame
